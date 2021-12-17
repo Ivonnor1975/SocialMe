@@ -5,12 +5,12 @@ const UserSchema = new Schema(
     username: {
         type: String,
         unique: true,
-        required: true,
+        required: 'User Name is Required',
         trim: true
     }, 
     email: {
       type: String,
-	  require: true,
+	    require: true,
       unique: true,
 	  //ise Regex to validate e-mail address
       match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
@@ -22,9 +22,8 @@ const UserSchema = new Schema(
     friends: [{
         type: Schema.Types.ObjectId,
         ref: 'Users'
-    }]
+    }],
     },
-  },
   {
     toJSON: {
       virtuals: true,
