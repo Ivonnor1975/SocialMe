@@ -49,7 +49,6 @@ const  ReactionSchema = new Schema(
      username: {
         type: String,
         required: true,
-        ref: 'User'
     },
     // use ReactionSchema to validate data for a reaction
     reactions: [ReactionSchema],

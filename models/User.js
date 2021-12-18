@@ -1,5 +1,7 @@
+//Import schema and model from library
 const { Schema, model } = require('mongoose');
 
+//Create the schema
 const UserSchema = new Schema(
   {
     username: {
@@ -12,7 +14,7 @@ const UserSchema = new Schema(
       type: String,
 	    require: true,
       unique: true,
-	  //ise Regex to validate e-mail address
+	  //Use Regex to validate e-mail address
       match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
     },
   	thoughts: [{
@@ -21,7 +23,7 @@ const UserSchema = new Schema(
     }],
     friends: [{
         type: Schema.Types.ObjectId,
-        ref: 'Users'
+        ref: 'User'
     }],
     },
   {
@@ -33,11 +35,11 @@ const UserSchema = new Schema(
 );
 
 //get total count of friends
-UsersSchema.virtual('friendCount').get(function() {
+UserSchema.virtual('friendCount').get(function() {
     return this.friends.length;
 })
 
-// create the User Model using the Schema
+//create the User Model using the Schema
 const User = model('User', UserSchema);
 
 //export the user model
