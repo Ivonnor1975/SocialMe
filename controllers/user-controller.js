@@ -96,18 +96,30 @@ addFriend({ params }, res) {
 
 //delete a friend
 removeFriend({ params }, res) {
-  User.findOneAndUpdate({_id: params.userId}, {$pull: { friends: params.friendId}}, {new: true})
-  .populate({path: 'friends', select: '-__v'})
-  .select('-__v')
-  .then(dbData => {
-      if(!dbData) {
-          res.status(404).json({message: 'No User with this particular ID!'});
-          return;
-      }
-      res.json(dbData);
-  })
-  .catch(err => res.status(400).json(err));
-}
+    //Check to see if friendId exists first
+    User.findById({ _id: params.friendId })
+    .then(dbFriend => {
+        if(!dbFriend) {
+            res.status(404).json({ 'message': `There is no user with id ${params.friendId}`});
+            return;
+        }
+        User.findOneAndUpdate({_id: params.userId}, {$pull: { friends: params.friendId}}, {new: true})
+          .populate({path: 'friends', select: '-__v'})
+          .select('-__v')
+          .then(dbData => {
+          if(!dbData) {
+                res.status(404).json({message: 'No User with this particular ID!'});
+                return;
+                .catch(err => {
+                  console.log(err);
+                  res.status(400).json(err);
+              });
+          })
+          .catch(err => {
+              console.log(err);
+              res.status(400).json(err);
+          });
+      },
 }
 
 // Export module user controller
