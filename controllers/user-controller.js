@@ -107,19 +107,22 @@ removeFriend({ params }, res) {
           .populate({path: 'friends', select: '-__v'})
           .select('-__v')
           .then(dbData => {
-          if(!dbData) {
-                res.status(404).json({message: 'No User with this particular ID!'});
-                return;
-                .catch(err => {
-                  console.log(err);
-                  res.status(400).json(err);
-              });
+              if(!dbData) {
+                  res.status(404).json({ 'message': `There is no user with id ${params.userId}`});
+                  return;
+              }
+              res.json(dbData);
           })
           .catch(err => {
               console.log(err);
               res.status(400).json(err);
           });
-      },
+      })
+      .catch(err => {
+          console.log(err);
+          res.status(400).json(err);
+      });
+}
 }
 
 // Export module user controller
