@@ -1,7 +1,7 @@
 // Require express router
 const router = require('express').Router();
 
-const {addReactions, removeReactions, getAllThoughts, getThoughtsById, addThoughts, removeThoughts } = require('../../controllers/Thoughts-controller');
+const {addReactions, removeReactions, getAllThoughts, getThoughtsById, addThoughts,updateThoughts, removeThoughts } = require('../../controllers/Thoughts-controller');
 
 // Set up GET all at /api/thoughs
 router
@@ -12,6 +12,7 @@ router
 router
  .route('/:id')
  .get(getThoughtsById)
+ .put(updateThoughts)
 
 //create a though and link it to user's thoughts
 router.route('/:userId').post(addThoughts);
