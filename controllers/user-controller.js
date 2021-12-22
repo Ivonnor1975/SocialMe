@@ -1,9 +1,11 @@
-const { User } = require('../models');
+// Require Thoughts and Users Models
+const { User} = require('../models');
 
 const userController = {
   // get all users
   getAllUsers(req, res) {
     User.find({})
+    // populate users thoughts
     .then(dbData => res.json(dbData))
     .catch(err => {
         console.log(err);
@@ -12,8 +14,8 @@ const userController = {
   },    
   // get one User by id
   getUserById({ params }, res) {
-    User.finsdOne({ _id: params.id })
-      .then(dbData => {
+    User.findOne({ _id: params.id })
+    .then(dbData => {
         // If no user is found, send 404
         if (!dbData) {
           res.status(404).json({ message: 'No User found with this id!' });
@@ -60,4 +62,6 @@ deleteUser({ params }, res) {
       .catch(err => res.status(400).json(err));
   }
 }
+
+// Export module user controller
 module.exports = userController;
