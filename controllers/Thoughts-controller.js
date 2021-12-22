@@ -12,8 +12,8 @@ const thoughtsController = {
       });
   },
 
-    // get one User by id
-    getThoughtsById({ params }, res) {
+  // get one User by id
+  getThoughtsById({ params }, res) {
       Thoughts.findOne({ _id: params.id })
       .then(dbData => {
           // If no Thought is found, send 404
@@ -33,7 +33,8 @@ const thoughtsController = {
    addThoughts({ params, body }, res) {
         Thoughts.create(body)
           .then(({ _id }) => {
-            return Users.findOneAndUpdate(
+            //Insert the thought into the User's thoughts 
+              return User.findOneAndUpdate(
               { _id: params.userId },
               { $push: { thoughts: _id } },
               { new: true }
@@ -50,14 +51,14 @@ const thoughtsController = {
       },
 
 removeThoughts({ params }, res) {
-    Thoughts.findOneAndDelete({ _id: params.commentId })
-      .then(deletedComment => {
-        if (!deletedComment) {
+    Thoughts.findOneAndDelete({ _id: params.thoughtId})
+      .then(deletedth => {
+        if (!deletedth) {
           return res.status(404).json({ message: 'No thoughts with this id!' });
         }
         return User.findOneAndUpdate(
           { _id: params.userId },
-          { $pull: { thoughts: _id } },
+          { $pull: { thoughts: params.thoughtId}},
           { new: true }
         );
       })
@@ -70,6 +71,7 @@ removeThoughts({ params }, res) {
       })
       .catch(err => res.json(err));
   },
+
 //add reactions
 addReactions({ params, body }, res) {
   Thoughts.findOneAndUpdate(

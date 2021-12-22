@@ -3,17 +3,23 @@ const router = require('express').Router();
 
 const {addReactions, removeReactions, getAllThoughts, getThoughtsById, addThoughts, removeThoughts } = require('../../controllers/Thoughts-controller');
 
-// Set up GET all and POST at /api/user
+// Set up GET all at /api/thoughs
 router
   .route('/')
   .get(getAllThoughts)
 
+  // use though id to get or delete one thought
 router
  .route('/:id')
  .get(getThoughtsById)
- 
-// -- Directs to: /api/thoughts/:userId <POST>
+
+//create a though and link it to user's thoughts
 router.route('/:userId').post(addThoughts);
+
+//delete a though and info in User as well. 
+router.route('/:thoughtId/:userId')
+.delete(removeThoughts)
+
 
 // /api/thoughts/<userId>/<thoughtsId>
 router.route('/:UserId/:thoughtsId')
