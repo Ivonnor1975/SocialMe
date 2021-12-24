@@ -23,9 +23,9 @@ Clone the Repository
 Run node server.js to create the server and be able to access in local host port.
 
 ## Usage
-This project is used to search and post. Developers can publish their blog posts and comment on other developers’ posts as well.
+This project offers a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list using API roues by Insomina or Insomnia,or Postman
 
-![image](https://user-images.githubusercontent.com/88918693/144714170-50249c62-e267-4a2f-b623-35570c7bb099.png)
+
 
 ## License
 This project is licensed under the MIT
