@@ -24,8 +24,11 @@ router.route('/:thoughtId/:userId')
 
 // /api/thoughts/<userId>/<thoughtsId>
 router.route('/:UserId/:thoughtsId')
-.put(addReactions)
 .delete(removeThoughts);
+
+// /api/thoughts/:thoughtId/reactions
+router.route('/:thoughtId/reactions')
+.put(addReactions)
 
 router.route('/:userId/:thoughtsId/:reactionId').delete(removeReactions);
 

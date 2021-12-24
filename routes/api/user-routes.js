@@ -3,8 +3,8 @@ const router = require('express').Router();
 
 //Import functionalliy to hook it to routes
 const {
-  getAllUsers,
-  getUserById,
+    getAllUsers,
+    getUserById,
     createUser,
     updateUser,
     deleteUser,

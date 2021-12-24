@@ -87,19 +87,20 @@ removeThoughts({ params }, res) {
 //add reactions
 addReactions({ params, body }, res) {
   Thoughts.findOneAndUpdate(
-    { _id: params.thoughtsId },
+    { _id: params.thoughtId },
     { $push: { reactions: body } },
     { new: true }
   )
     .then(dbData => {
       if (!dbData) {
-        res.status(404).json({ message: 'No user found with this id!' });
+        res.status(404).json({ message: 'No Thoughts found with this id!' });
         return;
       }
       res.json(dbData);
     })
     .catch(err => res.json(err));
 },
+
 // remove reactions
 removeReactions({ params }, res) {
   Thoughts.findOneAndUpdate(
