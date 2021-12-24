@@ -13,9 +13,12 @@ This is a social network web application where users can share their thoughts, r
   * [test](#test)
 
 ## Installation
-This application uses Node.js packages, express, mongoDb and ate-fns. To install necessary dependecies, run the following commands:
+This application uses Node.js packages, Express.js for routing, a MongoDB database, and the Mongoose ODM. In addition to using the Express.js, it uses date-fns to format timestamps.
 
-Clone the Repository , and install mongoDb on your local machine. 
+To install necessary dependecies, run the following commands:
+
+Install MongoDB on local machine. 
+Clone the Repository
 
 Run node server.js to create the server and be able to access in local host port.
 
@@ -30,7 +33,5 @@ This project is licensed under the MIT
 Link: https://opensource.org/licenses/MIT
 
 # Test
-This product can be tested through the demo link.
-https://secret-river-89820.herokuapp.com/
+Test the api routes using Insomnia,or Postman.
 
-npm install express mongoose
