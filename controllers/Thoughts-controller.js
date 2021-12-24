@@ -104,7 +104,7 @@ addReactions({ params, body }, res) {
 // remove reactions
 removeReactions({ params }, res) {
   Thoughts.findOneAndUpdate(
-    { _id: params.thoughtsId },
+    { _id: params.thoughtId },
     { $pull: { reactions: { reactionId: params.reactionId } } },
     { new: true }
   )
