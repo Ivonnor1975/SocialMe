@@ -63,14 +63,14 @@ updateThoughts({ params, body }, res) {
 },
 
 removeThoughts({ params }, res) {
-    Thoughts.findOneAndDelete({ _id: params.thoughtId})
+    Thoughts.findOneAndDelete({ _id: params.thoughtsId})
       .then(deletedth => {
         if (!deletedth) {
           return res.status(404).json({ message: 'No thoughts with this id!' });
         }
         return User.findOneAndUpdate(
-          { _id: params.userId },
-          { $pull: { thoughts: params.thoughtId}},
+          { _id: params.UserId },
+          { $pull: { thoughts: params.thoughtsId}},
           { new: true }
         );
       })
